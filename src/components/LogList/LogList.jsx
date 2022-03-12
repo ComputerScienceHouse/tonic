@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import Log from './Log';
-import {
-    Form,
-    FormGroup,
-    Input,
-    Table,
-    Label,
-    Button,
-    Collapse,
-} from 'reactstrap';
+import { Form, FormGroup, Input, Table, Label, Button, Collapse } from 'reactstrap';
 
 const LogData = [
     {
@@ -78,11 +70,11 @@ class UserList extends Component {
             // toggle off
             this.setState({
                 machineFilters: this.state.machineFilters.filter(
-                    machine => machine !== machineName
+                    (machine) => machine !== machineName
                 ),
             });
         } else {
-            this.setState(prevState => ({
+            this.setState((prevState) => ({
                 machineFilters: [...prevState.machineFilters, machineName],
             }));
         }
@@ -98,13 +90,13 @@ class UserList extends Component {
     }
 
     toggleFilters() {
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
             showFilters: !prevState.showFilters,
         }));
     }
 
     render() {
-        const logs = LogData.filter(log => {
+        const logs = LogData.filter((log) => {
             let d = new Date(log.time * 1000);
             return (
                 this.state.machineFilters.includes(log.machine) &&
@@ -112,13 +104,7 @@ class UserList extends Component {
                 d < new Date(this.state.dateEnd)
             );
         }).map((log, index) => {
-            return (
-                <Log
-                    key={index}
-                    {...log}
-                    time={this.unixToTimestamp(log.time)}
-                />
-            );
+            return <Log key={index} {...log} time={this.unixToTimestamp(log.time)} />;
         });
         return (
             <div>
@@ -139,9 +125,7 @@ class UserList extends Component {
                                 <Input
                                     type="checkbox"
                                     defaultChecked
-                                    onClick={() =>
-                                        this.updateFilters('Little Drink')
-                                    }
+                                    onClick={() => this.updateFilters('Little Drink')}
                                 />
                                 {''}
                                 Little Drink
@@ -152,9 +136,7 @@ class UserList extends Component {
                                 <Input
                                     type="checkbox"
                                     defaultChecked
-                                    onClick={() =>
-                                        this.updateFilters('Big Drink')
-                                    }
+                                    onClick={() => this.updateFilters('Big Drink')}
                                 />
                                 {''}
                                 Big Drink
@@ -181,11 +163,9 @@ class UserList extends Component {
                                 inline
                                 type="date"
                                 id="startDate"
-                                onChange={e =>
+                                onChange={(e) =>
                                     this.setState({
-                                        dateStart: this.newDateObj(
-                                            e.target.value
-                                        ),
+                                        dateStart: this.newDateObj(e.target.value),
                                     })
                                 }
                             />
@@ -198,11 +178,9 @@ class UserList extends Component {
                                 inline
                                 type="date"
                                 id="endDate"
-                                onChange={e =>
+                                onChange={(e) =>
                                     this.setState({
-                                        dateEnd: this.newDateObj(
-                                            e.target.value
-                                        ),
+                                        dateEnd: this.newDateObj(e.target.value),
                                     })
                                 }
                             />

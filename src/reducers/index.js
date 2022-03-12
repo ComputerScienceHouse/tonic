@@ -52,7 +52,7 @@ function apis(
             for (const machine of action.stock.machines) {
                 drops[machine.name] = {
                     display_name: machine.display_name,
-                    slots: machine.slots.map(slot => ({
+                    slots: machine.slots.map((slot) => ({
                         number: slot.number,
                         item: slot.item,
                         dropStatus: null,
@@ -183,7 +183,7 @@ function apis(
     }
 }
 
-export default history =>
+export default (history) =>
     combineReducers({
         router: connectRouter(history),
         oidc: oidcReducer,

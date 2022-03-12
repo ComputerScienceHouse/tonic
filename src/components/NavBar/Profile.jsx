@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    UncontrolledDropdown,
-} from 'reactstrap';
+import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -42,9 +37,7 @@ class Profile extends React.Component {
                     <span className="caret" />
                 </DropdownToggle>
                 <DropdownMenu>
-                    <DropdownItem
-                        href={'https://profiles.csh.rit.edu/user/' + username}
-                    >
+                    <DropdownItem href={'https://profiles.csh.rit.edu/user/' + username}>
                         Profile
                     </DropdownItem>
                     <DropdownItem divider />

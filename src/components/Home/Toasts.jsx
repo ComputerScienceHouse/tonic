@@ -27,7 +27,7 @@ class Toasts extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     drops: state.apis.drops,
 });
 

@@ -91,10 +91,9 @@ class UserList extends Component {
         }
         const filterLen = this.state.filterStr.length;
         const users = this.props.users
-            .filter(user =>
+            .filter((user) =>
                 filterLen > 0
-                    ? this.state.filterStr ===
-                          user.uid.substring(0, filterLen) ||
+                    ? this.state.filterStr === user.uid.substring(0, filterLen) ||
                       this.state.filterStr === user.cn.substring(0, filterLen)
                     : false
             )
@@ -116,9 +115,7 @@ class UserList extends Component {
                 <Form>
                     <FormGroup>
                         <Input
-                            onChange={e =>
-                                this.setState({ filterStr: e.target.value })
-                            }
+                            onChange={(e) => this.setState({ filterStr: e.target.value })}
                             type="search"
                             placeholder="Search"
                         />
@@ -147,20 +144,16 @@ class UserList extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     oidc: state.oidc,
     users: state.apis.users.users,
     creditsUpdate: state.apis.creditsUpdate,
     creditsUpdateError: (state.apis.creditsUpdate || {}).error,
 });
 
-const mapDispatchToProps = dispatch => ({
-    getUsers: access_token => fetchUsers(dispatch, access_token),
-    getCredits: (access_token, uid) =>
-        fetchCredits(dispatch, access_token, uid),
+const mapDispatchToProps = (dispatch) => ({
+    getUsers: (access_token) => fetchUsers(dispatch, access_token),
+    getCredits: (access_token, uid) => fetchCredits(dispatch, access_token, uid),
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(UserList);
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);

@@ -32,7 +32,7 @@ export const RECEIVE_ITEM_ADD = 'RECEIVE_ITEM_ADD';
 export const REQUEST_SLOT_ACTIVE = 'REQUEST_SLOT_ACTIVE';
 export const RECEIVE_SLOT_ACTIVE = 'RECEIVE_SLOT_ACTIVE';
 
-const SERVER_ADDRESS = 'https://drink.csh.rit.edu';
+const SERVER_ADDRESS = localStorage.getItem('SERVER_ADDRESS') || 'https://drink.csh.rit.edu';
 
 function GET(access_token, route) {
     return fetch(SERVER_ADDRESS + route, {
@@ -53,7 +53,7 @@ function POST(access_token, route, body) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
-    }).catch(err => console.log(err));
+    }).catch((err) => console.log(err));
 }
 
 function PUT(access_token, route, body) {
@@ -65,7 +65,7 @@ function PUT(access_token, route, body) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
-    }).catch(err => console.log(err));
+    }).catch((err) => console.log(err));
 }
 
 function DELETE(access_token, route, body) {
@@ -77,7 +77,7 @@ function DELETE(access_token, route, body) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
-    }).catch(err => console.log(err));
+    }).catch((err) => console.log(err));
 }
 
 export function requestStock() {
@@ -233,29 +233,29 @@ export function responseChangeSlotActive(json) {
 export function fetchStock(dispatch, access_token) {
     dispatch(requestStock());
     return GET(access_token, '/drinks')
-        .then(response => response.json())
-        .then(json => dispatch(receiveStock(json)));
+        .then((response) => response.json())
+        .then((json) => dispatch(receiveStock(json)));
 }
 
 export function fetchItems(dispatch, access_token) {
     dispatch(requestItems());
     return GET(access_token, '/items')
-        .then(response => response.json())
-        .then(json => dispatch(receiveItems(json)));
+        .then((response) => response.json())
+        .then((json) => dispatch(receiveItems(json)));
 }
 
 export function fetchUsers(dispatch, access_token) {
     dispatch(requestUsers());
     return GET(access_token, '/users')
-        .then(response => response.json())
-        .then(json => dispatch(receiveUsers(json)));
+        .then((response) => response.json())
+        .then((json) => dispatch(receiveUsers(json)));
 }
 
 export function fetchCredits(dispatch, access_token, uid) {
     dispatch(requestCredits());
     return GET(access_token, '/users/credits?uid=' + uid)
-        .then(response => response.json())
-        .then(json => dispatch(receiveCredits(json)));
+        .then((response) => response.json())
+        .then((json) => dispatch(receiveCredits(json)));
 }
 
 export function dropDrink(dispatch, access_token, machine, slot) {
@@ -265,8 +265,8 @@ export function dropDrink(dispatch, access_token, machine, slot) {
         slot,
     };
     return POST(access_token, '/drinks/drop', body)
-        .then(response => response.json())
-        .then(json => dispatch(responseDropDrink(json, machine, slot)))
+        .then((response) => response.json())
+        .then((json) => dispatch(responseDropDrink(json, machine, slot)))
         .then(() => fetchStock(dispatch, access_token));
 }
 
@@ -277,8 +277,8 @@ export function updateUserCredits(dispatch, access_token, uid, drinkBalance) {
         drinkBalance,
     };
     return PUT(access_token, '/users/credits', body)
-        .then(response => response.json())
-        .then(json => dispatch(responseUpdateUserCredits(json)));
+        .then((response) => response.json())
+        .then((json) => dispatch(responseUpdateUserCredits(json)));
 }
 
 export function updateItem(dispatch, access_token, id, name, price) {
@@ -289,8 +289,8 @@ export function updateItem(dispatch, access_token, id, name, price) {
         price,
     };
     return PUT(access_token, '/items', body)
-        .then(response => response.json())
-        .then(json => dispatch(responseUpdateItem(json)));
+        .then((response) => response.json())
+        .then((json) => dispatch(responseUpdateItem(json)));
 }
 
 export function deleteItem(dispatch, access_token, id) {
@@ -299,8 +299,8 @@ export function deleteItem(dispatch, access_token, id) {
         id,
     };
     return DELETE(access_token, '/items', body)
-        .then(response => response.json())
-        .then(json => dispatch(responseDeleteItem(json)));
+        .then((response) => response.json())
+        .then((json) => dispatch(responseDeleteItem(json)));
 }
 
 export function clearTransactionResponses(dispatch) {
@@ -314,8 +314,8 @@ export function addItem(dispatch, access_token, name, price) {
         price,
     };
     return POST(access_token, '/items', body)
-        .then(response => response.json())
-        .then(json => dispatch(responseAddItem(json)));
+        .then((response) => response.json())
+        .then((json) => dispatch(responseAddItem(json)));
 }
 
 export function changeSlotActive(dispatch, access_token, machine, slot, active, item_id, count) {
@@ -328,6 +328,6 @@ export function changeSlotActive(dispatch, access_token, machine, slot, active, 
         count,
     };
     return PUT(access_token, '/slots', body)
-        .then(response => response.json())
-        .then(json => dispatch(responseChangeSlotActive(json)));
+        .then((response) => response.json())
+        .then((json) => dispatch(responseChangeSlotActive(json)));
 }

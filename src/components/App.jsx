@@ -38,22 +38,10 @@ class App extends Component {
                     <NavBar isDrinkAdmin={this.props.isDrinkAdmin} />
                     <Container>
                         <Switch>
-                            <Route
-                                exact
-                                path="/callback"
-                                component={OidcCallback}
-                            />
+                            <Route exact path="/callback" component={OidcCallback} />
                             <ProtectedRoute exact path="/" component={Home} />
-                            <ProtectedRoute
-                                exact
-                                path="/users"
-                                component={UserList}
-                            />
-                            <ProtectedRoute
-                                exact
-                                path="/items"
-                                component={ItemList}
-                            />
+                            <ProtectedRoute exact path="/users" component={UserList} />
+                            <ProtectedRoute exact path="/items" component={ItemList} />
                             {/*
                             <ProtectedRoute exact path="/temps" component={Temperatures}/>
                             <ProtectedRoute exact path="/logs" component={LogList}/>

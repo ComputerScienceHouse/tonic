@@ -9,7 +9,7 @@ const OidcCallback = ({ dispatch }) => (
     <CallbackComponent
         userManager={userManager}
         successCallback={() => dispatch(push('/'))}
-        errorCallback={error => {
+        errorCallback={(error) => {
             // TODO: Redirect to a more friendly error page
             dispatch(push('/'));
             console.error(error);

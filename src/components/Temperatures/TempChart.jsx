@@ -8,13 +8,13 @@ class TempChart extends Component {
             columns: [
                 [
                     'Temperature',
-                    ...this.props.data.map(entry => {
+                    ...this.props.data.map((entry) => {
                         return entry.temp;
                     }),
                 ],
                 [
                     'time',
-                    ...this.props.data.map(entry => {
+                    ...this.props.data.map((entry) => {
                         return entry.time;
                     }),
                 ],

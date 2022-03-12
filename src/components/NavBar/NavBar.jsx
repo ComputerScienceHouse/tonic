@@ -49,11 +49,7 @@ class NavBar extends React.Component {
                             <Nav navbar>
                                 {this.props.isDrinkAdmin && (
                                     <UncontrolledDropdown nav inNavbar>
-                                        <DropdownToggle
-                                            nav
-                                            caret
-                                            className="navbar-user"
-                                        >
+                                        <DropdownToggle nav caret className="navbar-user">
                                             Admin
                                             <span className="caret" />
                                         </DropdownToggle>

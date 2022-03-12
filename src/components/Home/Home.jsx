@@ -32,7 +32,7 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     stock: state.apis.stock.machines,
 });
 

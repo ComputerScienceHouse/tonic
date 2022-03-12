@@ -138,40 +138,22 @@ class UpdateItemModal extends React.Component {
                 <ModalBody>
                     {alertContent}
                     <FormGroup>
-                        <Label
-                            for={
-                                'name' +
-                                this.props.item.name.replace(/\s+/g, '')
-                            }
-                        >
-                            Name
-                        </Label>
+                        <Label for={'name' + this.props.item.name.replace(/\s+/g, '')}>Name</Label>
                         <Input
-                            id={
-                                'name' +
-                                this.props.item.name.replace(/\s+/g, '')
-                            }
+                            id={'name' + this.props.item.name.replace(/\s+/g, '')}
                             value={this.state.newName}
-                            onChange={e => this.handleNameChange(e)}
+                            onChange={(e) => this.handleNameChange(e)}
                             placeholder={'Item name'}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label
-                            for={
-                                'price' +
-                                this.props.item.name.replace(/\s+/g, '')
-                            }
-                        >
+                        <Label for={'price' + this.props.item.name.replace(/\s+/g, '')}>
                             Price
                         </Label>
                         <Input
-                            id={
-                                'price' +
-                                this.props.item.name.replace(/\s+/g, '')
-                            }
+                            id={'price' + this.props.item.name.replace(/\s+/g, '')}
                             value={this.state.newPrice}
-                            onChange={e => this.handlePriceChange(e)}
+                            onChange={(e) => this.handlePriceChange(e)}
                             placeholder={'Item price'}
                         />
                     </FormGroup>
@@ -186,19 +168,16 @@ class UpdateItemModal extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     oidc: state.oidc,
     updateItem: state.apis.updateItem,
     updateItemError: (state.apis.updateItem || {}).error,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     doUpdateItem: (access_token, id, name, price) =>
         updateItem(dispatch, access_token, id, name, price),
-    getItems: access_token => fetchItems(dispatch, access_token),
+    getItems: (access_token) => fetchItems(dispatch, access_token),
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(UpdateItemModal);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateItemModal);

@@ -1,13 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-    Button,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    Alert,
-} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Alert } from 'reactstrap';
 
 import { deleteItem, fetchItems } from '../../actions';
 
@@ -36,10 +29,7 @@ class UpdateItemModal extends React.Component {
     }
 
     deleteItem() {
-        this.props.doDeleteItem(
-            this.props.oidc.user.access_token,
-            this.props.item.id
-        );
+        this.props.doDeleteItem(this.props.oidc.user.access_token, this.props.item.id);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -99,8 +89,7 @@ class UpdateItemModal extends React.Component {
         return (
             <Modal size="sm" isOpen={this.state.modal} toggle={this.toggle}>
                 <ModalHeader toggle={this.toggle}>
-                    Are you sure you want to delete "
-                    <b>{this.props.item.name}</b>"?
+                    Are you sure you want to delete "<b>{this.props.item.name}</b>"?
                 </ModalHeader>
                 {alertContent && <ModalBody>{alertContent}</ModalBody>}
                 <ModalFooter>
@@ -113,18 +102,15 @@ class UpdateItemModal extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     oidc: state.oidc,
     deleteItem: state.apis.deleteItem,
     deleteItemError: (state.apis.deleteItem || {}).error,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     doDeleteItem: (access_token, id) => deleteItem(dispatch, access_token, id),
-    getItems: access_token => fetchItems(dispatch, access_token),
+    getItems: (access_token) => fetchItems(dispatch, access_token),
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(UpdateItemModal);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateItemModal);

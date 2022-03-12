@@ -48,7 +48,7 @@ class EditSlotModal extends React.Component {
     }
 
     handleEnableToggle(e) {
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
             newActive: !prevState.newActive,
         }));
     }
@@ -134,7 +134,7 @@ class EditSlotModal extends React.Component {
         if (this.props.items) {
             itemOptions = this.props.items
                 .sort((a, b) => (a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1))
-                .map(item => (
+                .map((item) => (
                     <option value={item.id} key={item.id}>
                         {item.name}
                     </option>
@@ -156,7 +156,7 @@ class EditSlotModal extends React.Component {
                             type="select"
                             placeholder={'Item name'}
                             value={this.state.newDrink}
-                            onChange={e => this.handleDrinkChange(e)}
+                            onChange={(e) => this.handleDrinkChange(e)}
                         >
                             {itemOptions || <option disabled>No items</option>}
                         </Input>
@@ -168,7 +168,7 @@ class EditSlotModal extends React.Component {
                                 value={this.state.newCount}
                                 min={0}
                                 max={20}
-                                onChange={e => this.handleCountChange(e)}
+                                onChange={(e) => this.handleCountChange(e)}
                                 type="number"
                             />{' '}
                         </FormGroup>
@@ -177,7 +177,7 @@ class EditSlotModal extends React.Component {
                         <Label check>
                             <Input
                                 checked={this.state.newActive || false}
-                                onChange={e => this.handleEnableToggle(e)}
+                                onChange={(e) => this.handleEnableToggle(e)}
                                 type="checkbox"
                             />{' '}
                             Active
@@ -194,21 +194,18 @@ class EditSlotModal extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     oidc: state.oidc,
     items: state.apis.items.items,
     changeSlotActive: state.apis.changeSlotActive,
     changeSlotActiveError: (state.apis.changeSlotActive || {}).error,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     doChangeSlotActive: (access_token, machine, number, active, item_id, count) =>
         changeSlotActive(dispatch, access_token, machine, number, active, item_id, count),
-    getItems: access_token => fetchItems(dispatch, access_token),
-    getStock: access_token => fetchStock(dispatch, access_token),
+    getItems: (access_token) => fetchItems(dispatch, access_token),
+    getStock: (access_token) => fetchStock(dispatch, access_token),
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(EditSlotModal);
+export default connect(mapStateToProps, mapDispatchToProps)(EditSlotModal);

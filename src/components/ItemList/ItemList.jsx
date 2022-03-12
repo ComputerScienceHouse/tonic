@@ -119,10 +119,7 @@ class ItemList extends Component {
                 for (let item of this.props.items) {
                     let drink = slot.item;
                     if (item.id === drink.id) {
-                        if (
-                            item['machines'] &&
-                            !item['machines'].includes(machine.display_name)
-                        ) {
+                        if (item['machines'] && !item['machines'].includes(machine.display_name)) {
                             item['machines'].push(machine.display_name);
                         } else {
                             item['machines'] = [machine.display_name];
@@ -145,28 +142,16 @@ class ItemList extends Component {
         }
         this.renderItemsList();
         const items = this.props.items
-            .filter(item =>
+            .filter((item) =>
                 this.state.filterStr
-                    ? item.name
-                          .toLowerCase()
-                          .includes(this.state.filterStr.toLowerCase())
+                    ? item.name.toLowerCase().includes(this.state.filterStr.toLowerCase())
                     : true
             )
             .sort((a, b) =>
-                a.machines
-                    ? b.machines
-                        ? a.machines.length < b.machines.length
-                        : false
-                    : true
+                a.machines ? (b.machines ? a.machines.length < b.machines.length : false) : true
             )
             .map((item, index) => {
-                return (
-                    <Item
-                        key={index}
-                        item={item}
-                        clearTransactionResponses={this.wrapper}
-                    />
-                );
+                return <Item key={index} item={item} clearTransactionResponses={this.wrapper} />;
             });
         let alertContent = '';
         if (this.state.alertObj) {
@@ -206,9 +191,7 @@ class ItemList extends Component {
                                     <Col xs="12" md="5">
                                         <FormGroup>
                                             <Input
-                                                onChange={e =>
-                                                    this.handleNameChange(e)
-                                                }
+                                                onChange={(e) => this.handleNameChange(e)}
                                                 type="text"
                                                 placeholder="Name"
                                             />
@@ -217,9 +200,7 @@ class ItemList extends Component {
                                     <Col xs="12" md="5">
                                         <FormGroup>
                                             <Input
-                                                onChange={e =>
-                                                    this.handlePriceChange(e)
-                                                }
+                                                onChange={(e) => this.handlePriceChange(e)}
                                                 type="text"
                                                 placeholder="Price"
                                             />
@@ -227,10 +208,7 @@ class ItemList extends Component {
                                     </Col>
                                     <Col xs="12" md="2" id="newItem">
                                         <FormGroup>
-                                            <Button
-                                                color="primary"
-                                                onClick={this.handleAddItem}
-                                            >
+                                            <Button color="primary" onClick={this.handleAddItem}>
                                                 Add item
                                             </Button>
                                         </FormGroup>
@@ -248,7 +226,7 @@ class ItemList extends Component {
                             <Form>
                                 <FormGroup>
                                     <Input
-                                        onChange={e =>
+                                        onChange={(e) =>
                                             this.setState({
                                                 filterStr: e.target.value,
                                             })
@@ -283,7 +261,7 @@ class ItemList extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     oidc: state.oidc,
     stock: state.apis.stock.machines,
     items: state.apis.items.items,
@@ -291,14 +269,10 @@ const mapStateToProps = state => ({
     itemAddError: (state.apis.addItem || {}).error,
 });
 
-const mapDispatchToProps = dispatch => ({
-    getItems: access_token => fetchItems(dispatch, access_token),
+const mapDispatchToProps = (dispatch) => ({
+    getItems: (access_token) => fetchItems(dispatch, access_token),
     clearTransactionResponses: () => clearTransactionResponses(dispatch),
-    addItem: (access_token, name, price) =>
-        addItem(dispatch, access_token, name, price),
+    addItem: (access_token, name, price) => addItem(dispatch, access_token, name, price),
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ItemList);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemList);

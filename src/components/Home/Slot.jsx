@@ -17,13 +17,13 @@ class Slot extends Component {
     }
 
     toggleDropModal() {
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
             dropModal: !prevState.dropModal,
         }));
     }
 
     toggleEditModal() {
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
             editModal: !prevState.editModal,
         }));
     }
@@ -81,16 +81,13 @@ class Slot extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     oidc: state.oidc,
     drink_balance: (state.apis.credits.user || {}).drinkBalance,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     dropDrink: (access_token, machine, slot) => dropDrink(dispatch, access_token, machine, slot),
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Slot);
+export default connect(mapStateToProps, mapDispatchToProps)(Slot);

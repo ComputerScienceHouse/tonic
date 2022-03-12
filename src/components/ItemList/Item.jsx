@@ -19,14 +19,14 @@ class Item extends Component {
 
     toggleUpdateModal() {
         this.props.clearTransactionResponses();
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
             updateModal: !prevState.updateModal,
         }));
     }
 
     toggleDeleteModal() {
         this.props.clearTransactionResponses();
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
             deleteModal: !prevState.deleteModal,
         }));
     }
@@ -41,45 +41,25 @@ class Item extends Component {
                             switch (machine) {
                                 case 'Big Drink':
                                     return (
-                                        <Badge
-                                            key={index}
-                                            id="machine-label"
-                                            color="info"
-                                            pill
-                                        >
+                                        <Badge key={index} id="machine-label" color="info" pill>
                                             {machine}
                                         </Badge>
                                     );
                                 case 'Snack':
                                     return (
-                                        <Badge
-                                            key={index}
-                                            id="machine-label"
-                                            color="warning"
-                                            pill
-                                        >
+                                        <Badge key={index} id="machine-label" color="warning" pill>
                                             {machine}
                                         </Badge>
                                     );
                                 case 'Little Drink':
                                     return (
-                                        <Badge
-                                            key={index}
-                                            id="machine-label"
-                                            color="success"
-                                            pill
-                                        >
+                                        <Badge key={index} id="machine-label" color="success" pill>
                                             {machine}
                                         </Badge>
                                     );
                                 default:
                                     return (
-                                        <Badge
-                                            key={index}
-                                            id="machine-label"
-                                            color="danger"
-                                            pill
-                                        >
+                                        <Badge key={index} id="machine-label" color="danger" pill>
                                             {machine}
                                         </Badge>
                                     );
