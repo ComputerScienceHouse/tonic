@@ -12,7 +12,7 @@ class SlotList extends Component {
                         key={slot.number}
                         slot={slot}
                         machine={this.props.machine}
-                        slotNum={index + 1}
+                        slotNum={slot.number}
                         isDrinkAdmin={this.props.isDrinkAdmin}
                     />
                 );
