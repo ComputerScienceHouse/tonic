@@ -259,10 +259,6 @@ export function fetchCredits(dispatch, access_token, uid) {
 }
 
 export function dropDrink(dispatch, access_token, machine, slot) {
-
-    console.log("Attempted to drop drink");
-    return;
-    /*
     dispatch(requestDropDrink(machine, slot));
     const body = {
         machine,
@@ -272,7 +268,6 @@ export function dropDrink(dispatch, access_token, machine, slot) {
         .then((response) => response.json())
         .then((json) => dispatch(responseDropDrink(json, machine, slot)))
         .then(() => fetchStock(dispatch, access_token));
-    */
 }
 
 export function updateUserCredits(dispatch, access_token, uid, drinkBalance) {
