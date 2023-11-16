@@ -3,22 +3,26 @@ import { connect } from 'react-redux';
 import { ListGroupItem, Badge, ButtonGroup, Button } from 'reactstrap';
 
 import EditSlotModal from './EditSlotModal';
+import ConfirmDropModal from './ConfirmDropModal';
+
 import { dropDrink } from '../../actions';
 
 class Slot extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            confirmDropModal: false,
             editModal: false,
         };
 
         this.drop = this.drop.bind(this);
         this.toggleEditModal = this.toggleEditModal.bind(this);
+        this.toggleConfirmDropModal = this.toggleConfirmDropModal.bind(this);
     }
 
-    toggleDropModal() {
+    toggleConfirmDropModal() {
         this.setState((prevState) => ({
-            dropModal: !prevState.dropModal,
+            confirmDropModal: !prevState.confirmDropModal,
         }));
     }
 
@@ -52,7 +56,7 @@ class Slot extends Component {
                     <ButtonGroup size="sm" className="pull-right">
                         <Button
                             className="drop"
-                            onClick={this.drop}
+                            onClick={this.toggleConfirmDropModal}
                             disabled={
                                 disabled || this.props.drink_balance < this.props.slot.item.price
                             }
@@ -66,6 +70,14 @@ class Slot extends Component {
                             </Button>
                         )}
                     </ButtonGroup>
+                    {this.state.confirmDropModal && (
+                        <ConfirmDropModal
+                            machine={this.props.machine}
+                            toggle={this.toggleConfirmDropModal}
+                            modal={this.state.confirmDropModal}
+                            confirm={this.drop}
+                        />
+                    )}
                     {this.state.editModal && (
                         <EditSlotModal
                             machine={this.props.machine}
