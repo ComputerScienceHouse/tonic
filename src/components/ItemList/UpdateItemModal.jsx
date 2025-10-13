@@ -47,6 +47,7 @@ class UpdateItemModal extends React.Component {
             this.state.newName,
             this.state.newPrice
         );
+        this.clearAlert();
     }
 
     componentWillReceiveProps(nextProps) {
