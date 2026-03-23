@@ -41,7 +41,7 @@ class Profile extends React.Component {
                         Profile
                     </DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem href="https://github.com/ramzallan/tonic/">
+                    <DropdownItem href="https://github.com/ComputerScienceHouse/tonic">
                         View on Github
                     </DropdownItem>
                 </DropdownMenu>
